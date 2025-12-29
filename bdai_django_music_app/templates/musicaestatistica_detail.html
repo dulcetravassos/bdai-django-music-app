@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ musicaestatistica.nome }}{% endblock %}
+{% block content %}
+    <h2>{{ musicaestatistica.nome }}</h2>
+    <p>Nome: {{ musicaestatistica.nome }}<br>URL: {{ musicaestatistica.url }}<br>Gostos: {{ musicaestatistica.estatistica_gostos }}<br>Visualizações: {{ musicaestatistica.estatistica_visualizacoes }}</p> <!-- ADICIONAR ARTISTAS COM FOR -->
+    <h2>Artistas desta Música:</h2>
+    <ul>
+        {% for a in musicaestatistica.artistas.all %}
+            <li><a href="{% url 'artista_detail' a.pk %}">{{ a.nome }}</a></li>
+        {% empty %}
+            <li>Não existem artistas.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

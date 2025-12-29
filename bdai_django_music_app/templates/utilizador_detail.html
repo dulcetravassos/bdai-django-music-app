@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ utilizador.nome_utilizador }}{% endblock %}
+{% block content %}
+    <h2>{{ utilizador.nome }}</h2>
+    <p>Nome: {{ utilizador.nome_utilizador }}<br>Email: {{ utilizador.email }}</p>
+    <h3>Playlists deste Utilizador:</h3>
+    <ul>
+        {% for p in playlists %}
+            <li><a href="{% url 'playlist_detail' p.pk %}">{{ p.nome }}</a> ({{ p.data_criacao }})</li>
+        {% empty %}
+            <li>Este utilizador não tem playlists.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

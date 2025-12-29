@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ album.nome }}{% endblock %}
+{% block content %}
+    <h2>{{ album.nome }}</h2>
+    <p>Nome: {{ album.nome }}<br>Artista: {{ album.artista.nome }}<br>Ano de lançamento: {{ album.ano_lancamento }}<br>Género: {{ album.genero }}</p>
+    <h3>Músicas deste Álbum:</h3>
+    <ul>
+        {% for m in musicas %}
+            <li><a href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> ({{ m.url }})</li>
+        {% empty %}
+            <li>Este álbum não tem músicas.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -61,11 +61,11 @@ class MusicaEstatistica(models.Model):
 class Playlist(models.Model):
     nome = models.CharField(max_length=120)
     publica = models.BooleanField()
-    data_criacao = models.DateField()
+    data_criacao = models.DateField(auto_now_add=True)
     utilizador = models.ForeignKey(Utilizador, on_delete=models.CASCADE, related_name='playlists')
 
     # Relação M:N com a tabela Musica:
-    musica = models.ManyToManyField(MusicaEstatistica, blank=True, related_name='musicas_estatisticas', db_table='playlist_musica_estatistica') # Correspondência com a tabela na bd
+    musicas = models.ManyToManyField(MusicaEstatistica, blank=True, related_name='playlists', db_table='playlist_musica_estatistica') # Correspondência com a tabela na bd
 
     class Meta:
         verbose_name = 'Playlist'

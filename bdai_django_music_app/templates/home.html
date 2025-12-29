@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Home - Biblioteca de Música{% endblock %}
+{% block content %}
+    <h2>Bem-vindo!</h2>
+    <p>Ver <a href="{% url 'utilizador_list' %}">Utilizadores</a> disponíveis.</p>
+    <p>Ver <a href="{% url 'playlist_list' %}">Playlists</a> disponíveis.</p>
+    <p>Ver <a href="{% url 'artista_list' %}">Artistas</a> disponíveis.</p>
+    <p>Ver <a href="{% url 'album_list' %}">Álbuns</a> disponíveis.</p>
+    <p>Ver <a href="{% url 'musicaestatistica_list' %}">Músicas</a> disponíveis.</p>
+{% endblock %}

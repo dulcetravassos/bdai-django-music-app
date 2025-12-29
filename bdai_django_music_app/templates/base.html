@@ -1,0 +1,35 @@
+<!doctype html>
+{% load static %}
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Música{% endblock %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'home' %}">Biblioteca de Música</a></h1>
+        <nav>
+            <a href="{% url 'utilizador_list' %}">Utilizadores</a> | &nbsp;
+            <a href="{% url 'utilizador_create' %}">Adicionar Utilizador</a> | &nbsp;
+            <a href="{% url 'playlist_list' %}">Playlists</a> | &nbsp;
+            <a href="{% url 'playlist_create' %}">Adicionar Playlist</a> | &nbsp;
+            <a href="{% url 'artista_list' %}">Artistas</a> | &nbsp;
+            <a href="{% url 'artista_create' %}">Adicionar Artistas</a> | &nbsp;
+            <a href="{% url 'album_list' %}">Álbuns</a> | &nbsp;
+            <a href="{% url 'album_create' %}">Adicionar Álbuns</a> | &nbsp;
+            <a href="{% url 'musicaestatistica_list' %}">Músicas</a> | &nbsp;
+            <a href="{% url 'musicaestatistica_create' %}">Adicionar Música</a> | &nbsp;
+        </nav>
+        <hr>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <hr>
+        <p>Projeto BDAI 25/26 - Dulce Travassos</p>
+    </footer>
+</body>
+</html>

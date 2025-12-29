@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ playlist.nome }}{% endblock %}
+{% block content %}
+    <h2>{{ playlist.nome }}</h2>
+    <p>Nome: {{ playlist.nome }}<br>Data de Criação: {{ playlist.data_criacao }}<br>Pública? {{ playlist.publica }}</p>
+    <h3>Músicas desta Playlist:</h3>
+    <ul>
+        {% for m in musicas %}
+            <li><a href="{% url 'musica_detail' m.pk %}">{{ m.nome }}</a> - {{ m.nome }} ({{ m.url }})</li> <!-- ADICIONAR NOME ARTISTA-->
+        {% empty %}
+            <li>Esta playlist não tem músicas.</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
