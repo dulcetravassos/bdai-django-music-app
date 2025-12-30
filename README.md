@@ -7,6 +7,18 @@ Desenvolvido no âmbito da disciplina de Bases de Dados e Análise de Informaç�
 Este projeto demonstra a implementação de um modelo de base de dados relacional utilizando **Django** e **PostgreSQL**. O foco principal é a correta modelação de dados e a sua interação via aplicação web.
 
 ### Tecnologias Usadas
-* Python 3 / Django 5
+
+**Backend:**
+* Python 3
+* Django 5
 * PostgreSQL
-* HTML/CSS (Django Templates)
+
+**Frontend:**
+* HTML5 / CSS3
+* Bootstrap 5 (Framework CSS)
+* Django Template Language (DTL)
+* django-bootstrap-v5
+
+**Ferramentas:**
+* VS Code
+* pgAdmin 4
