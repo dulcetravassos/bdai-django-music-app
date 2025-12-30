@@ -1,35 +1,138 @@
-<!doctype html>
-{% load static %}
+<!DOCTYPE html>
+{% load static %} {% load bootstrap5 %}
 <html lang="pt">
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>{% block title %}Música{% endblock %}</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    {% bootstrap_css %} 
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+  </head>
+  <body>
     <header>
-        <h1><a href="{% url 'home' %}">Biblioteca de Música</a></h1>
-        <nav>
-            <a href="{% url 'utilizador_list' %}">Utilizadores</a> | &nbsp;
-            <a href="{% url 'utilizador_create' %}">Adicionar Utilizador</a> | &nbsp;
-            <a href="{% url 'playlist_list' %}">Playlists</a> | &nbsp;
-            <a href="{% url 'playlist_create' %}">Adicionar Playlist</a> | &nbsp;
-            <a href="{% url 'artista_list' %}">Artistas</a> | &nbsp;
-            <a href="{% url 'artista_create' %}">Adicionar Artistas</a> | &nbsp;
-            <a href="{% url 'album_list' %}">Álbuns</a> | &nbsp;
-            <a href="{% url 'album_create' %}">Adicionar Álbuns</a> | &nbsp;
-            <a href="{% url 'musicaestatistica_list' %}">Músicas</a> | &nbsp;
-            <a href="{% url 'musicaestatistica_create' %}">Adicionar Música</a> | &nbsp;
-        </nav>
-        <hr>
+      <!-- <h1><a href="{% url 'home' %}">Biblioteca de Música</a></h1> -->
+
+      <!-- Código adaptado de https://getbootstrap.com/docs/5.0/components/navbar/ -->
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'home' %}"
+            >Biblioteca de Música</a
+          >
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Utilizadores
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'utilizador_list' %}">Ver Todos</a></li>
+                  <li><a class="dropdown-item" href="{% url 'utilizador_create' %}">Adicionar</a></li>
+                  <li><a class="dropdown-item" href="">Editar</a></li>
+                  <li><a class="dropdown-item" href="">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Playlists
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'playlist_list' %}">Ver Todas</a></li>
+                  <li><a class="dropdown-item" href="{% url 'playlist_create' %}">Adicionar</a></li>
+                  <li><a class="dropdown-item" href="">Editar</a></li>
+                  <li><a class="dropdown-item" href="">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Artistas
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'artista_list' %}">Ver Todos</a></li>
+                  <li><a class="dropdown-item" href="{% url 'artista_create' %}">Adicionar</a></li>
+                  <li><a class="dropdown-item" href="">Editar</a></li>
+                  <li><a class="dropdown-item" href="">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Álbuns
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'album_list' %}">Ver Todos</a></li>
+                  <li><a class="dropdown-item" href="{% url 'album_create' %}">Adicionar</a></li>
+                  <li><a class="dropdown-item" href="">Editar</a></li>
+                  <li><a class="dropdown-item" href="">Eliminar</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href=""
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Músicas
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="{% url 'musicaestatistica_list' %}">Ver Todas</a></li>
+                  <li><a class="dropdown-item" href="{% url 'musicaestatistica_create' %}">Adicionar</a></li>
+                  <li><a class="dropdown-item" href="">Editar</a></li>
+                  <li><a class="dropdown-item" href="">Eliminar</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <hr />
     </header>
-    <main>
-        {% block content %}{% endblock %}
-    </main>
+    <main>{% block content %}{% endblock %}</main>
     <footer>
-        <hr>
-        <p>Projeto BDAI 25/26 - Dulce Travassos</p>
+      <hr />
+      <p>Projeto BDAI 25/26 - Dulce Travassos</p>
     </footer>
-</body>
+    {% bootstrap_javascript %}
+  </body>
 </html>
