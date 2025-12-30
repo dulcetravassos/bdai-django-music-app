@@ -1,131 +1,194 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 from .models import MusicaEstatistica, Artista, Album, Playlist, Utilizador
 from .forms import UtilizadorForm, PlaylistForm, ArtistaForm, AlbumForm, MusicaEstatisticaForm
-from django.db.models import Prefetch
 
-def home(request):
-    return render(request, 'home.html')
+class HomeView(TemplateView):
+    template_name = "home.html"
 
 ################################################ Utilizador ################################################
 
 # Utilizador: lista
-def utilizador_list(request):
-    utilizadores = Utilizador.objects.all()
-    return render(request, 'utilizador_list.html', {'utilizadores': utilizadores})
+class UtilizadorListView(ListView):
+    model = Utilizador
+    template_name = "utilizador_list.html"
+    context_object_name = "utilizadores"
 
 # Utilizador: detalhes + playlists
-def utilizador_detail(request, pk):
-    utilizador = get_object_or_404(Utilizador, pk=pk)
-    playlists = utilizador.playlists.all()
-    return render(request, 'utilizador_detail.html', {'utilizador': utilizador, 'playlists': playlists})
+class UtilizadorDetailView(DetailView):
+    model = Utilizador
+    template_name = "utilizador_detail.html"
+    context_object_name = "utilizador"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["playlists"] = self.object.playlists.all()
+        return context
 
 # Adicionar Utilizador
-def utilizador_create(request):
-    if request.method == 'POST':
-        form = UtilizadorForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('utilizador_list')
-    else:
-        form = UtilizadorForm()
-    return render(request, 'utilizador_form.html', {'form': form})
+class UtilizadorCreateView(CreateView):
+    model = Utilizador
+    form_class = UtilizadorForm
+    template_name = "utilizador_form.html"
+    success_url = reverse_lazy("utilizador_list")
 
+# Atualizar/Editar Utilizador
+class UtilizadorUpdateView(UpdateView):
+    model = Utilizador
+    form_class = UtilizadorForm
+    template_name = "utilizador_form.html"
+    success_url = reverse_lazy("utilizador_list")
+
+# Eliminar Utilizador
+class UtilizadorDeleteView(DeleteView):
+    model = Utilizador
+    template_name = "confirm_delete.html"
+    success_url = reverse_lazy("utilizador_list")
 
 ################################################ Álbum ################################################
 
 # Álbum: lista
-def album_list(request):
-    albuns = Album.objects.all()
-    return render(request, 'album_list.html', {'albuns': albuns})
+class AlbumListView(ListView):
+    model = Album
+    template_name = "album_list.html"
+    context_object_name = "albuns"
 
 # Álbum: detalhes (inclui artista) + músicas
-def album_detail(request, pk):
-    album = get_object_or_404(Album, pk=pk)
-    musicas = album.musicas_estatisticas.all()
-    return render(request, 'album_detail.html', {'album': album, 'musicas': musicas})
+class AlbumDetailView(DetailView):
+    model = Album
+    template_name = "album_detail.html"
+    context_object_name = "album"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["musicas"] = self.object.musicas_estatisticas.all()
+        return context
 
 # Adicionar Álbum
-def album_create(request):
-    if request.method == 'POST':
-        form = AlbumForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('album_list')
-    else:
-        form = AlbumForm()
-    return render(request, 'album_form.html', {'form': form})
+class AlbumCreateView(CreateView):
+    model = Album
+    form_class = AlbumForm
+    template_name = "album_form.html"
+    success_url = reverse_lazy("album_list")
 
+# Editar Álbum
+class AlbumUpdateView(UpdateView):
+    model = Album
+    form_class = AlbumForm
+    template_name = "album_form.html"
+    success_url = reverse_lazy("album_list")
+
+# Eliminar Álbum
+class AlbumDeleteView(DeleteView):
+    model = Album
+    template_name = "confirm_delete.html"
+    success_url = reverse_lazy("album_list")
 
 ################################################ Artista ################################################
 
 # Artista: lista
-def artista_list(request):
-    artistas = Artista.objects.all()
-    return render(request, 'artista_list.html', {'artistas': artistas})
+class ArtistaListView(ListView):
+    model = Artista
+    template_name = "artista_list.html"
+    context_object_name = "artistas"
 
 # Artista: detalhes + músicas + álbuns
-def artista_detail(request, pk):
-    artista = get_object_or_404(Artista, pk=pk)
-    musicas = artista.musicas_estatisticas.all()
-    albuns = artista.albuns.all()
-    return render(request, 'artista_detail.html', {'artista': artista, 'musicas': musicas, 'albuns': albuns})
+class ArtistaDetailView(DetailView):
+    model = Artista
+    template_name = "artista_detail.html"
+    context_object_name = "artista"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["musicas"] = self.object.musicas_estatisticas.all()
+        context["albuns"] = self.object.albuns.all()
+        return context
 
 # Adicionar Artista
-def artista_create(request):
-    if request.method == 'POST':
-        form = ArtistaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('artista_list')
-    else:
-        form = ArtistaForm()
-    return render(request, 'artista_form.html', {'form': form})
+class ArtistaCreateView(CreateView):
+    model = Artista
+    form_class = ArtistaForm
+    template_name = "artista_form.html"
+    success_url = reverse_lazy("artista_list")
 
+# Editar Artista
+class ArtistaUpdateView(UpdateView):
+    model = Artista
+    form_class = ArtistaForm
+    template_name = "artista_form.html"
+    success_url = reverse_lazy("artista_list")
+
+# Eliminar Artista
+class ArtistaDeleteView(DeleteView):
+    model = Artista
+    template_name = "confirm_delete.html"
+    success_url = reverse_lazy("artista_list")
 
 ################################################ Playlist ################################################
 
 # Playlist: lista
-def playlist_list(request):
-    playlists = Playlist.objects.all()
-    return render(request, 'playlist_list.html', {'playlists': playlists})
+class PlaylistListView(ListView):
+    model = Playlist
+    template_name = "playlist_list.html"
+    context_object_name = "playlists"
 
 # Playlist: detalhes
-def playlist_detail(request, pk):
-    playlist = get_object_or_404(Playlist, pk=pk)
-    musicas = playlist.musicas.all()
-    return render(request, 'playlist_detail.html', {'playlist': playlist, 'musicas': musicas})
+class PlaylistDetailView(DetailView):
+    model = Playlist
+    template_name = "playlist_detail.html"
+    context_object_name = "playlist"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["musicas"] = self.object.musicas.all()
+        return context
 
 # Adicionar Playlist
-def playlist_create(request):
-    if request.method == 'POST':
-        form = PlaylistForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('playlist_list')
-    else:
-        form = PlaylistForm()
-    return render(request, 'playlist_form.html', {'form': form})
+class PlaylistCreateView(CreateView):
+    model = Playlist
+    form_class = PlaylistForm
+    template_name = "playlist_form.html"
+    success_url = reverse_lazy("playlist_list")
 
+# Editar Playlist
+class PlaylistUpdateView(UpdateView):
+    model = Playlist
+    form_class = PlaylistForm
+    template_name = "playlist_form.html"
+    success_url = reverse_lazy("playlist_list")
+
+# Eliminar Playlist
+class PlaylistDeleteView(DeleteView):
+    model = Playlist
+    template_name = "confirm_delete.html"
+    success_url = reverse_lazy("playlist_list")
 
 ################################################ Música-Estatística ################################################
 
 # Música-Estatística: lista
-def musicaestatistica_list(request):
-    musicaestatistica = MusicaEstatistica.objects.all()
-    return render(request, 'musicaestatistica_list.html', {'musicas': musicaestatistica})
+class MusicaEstatisticaListView(ListView):
+    model = MusicaEstatistica
+    template_name = "musicaestatistica_list.html"
+    context_object_name = "musicas"
 
 # Música-Estatística: detalhes
-def musicaestatistica_detail(request, pk):
-    musicaestatistica = get_object_or_404(MusicaEstatistica, pk=pk)
-    return render(request, 'musicaestatistica_detail.html', {'musicaestatistica': musicaestatistica})
+class MusicaEstatisticaDetailView(DetailView):
+    model = MusicaEstatistica
+    template_name = "musicaestatistica_detail.html"
+    context_object_name = "musicaestatistica"
 
 # Adicionar Música-Estatística
-def musicaestatistica_create(request):
-    if request.method == 'POST':
-        form = MusicaEstatisticaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('musicaestatistica_list')
-    else:
-        form = MusicaEstatisticaForm()
-    return render(request, 'musicaestatistica_form.html', {'form': form})
+class MusicaEstatisticaCreateView(CreateView):
+    model = MusicaEstatistica
+    form_class = MusicaEstatisticaForm
+    template_name = "musicaestatistica_form.html"
+    success_url = reverse_lazy("musicaestatistica_list")
+
+# Editar Música/Estatísticas
+class MusicaEstatisticaUpdateView(UpdateView):
+    model = MusicaEstatistica
+    form_class = MusicaEstatisticaForm
+    template_name = "musicaestatistica_form.html"
+    success_url = reverse_lazy("musicaestatistica_list")
+
+# Eliminar Música e Estatísticas
+class MusicaEstatisticaDeleteView(DeleteView):
+    model = MusicaEstatistica
+    template_name = "confirm_delete.html"
+    success_url = reverse_lazy("musicaestatistica_list")
