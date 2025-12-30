@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Playlists{% endblock %}
 {% block content %}
-    <h2>Lista de Playlists</h2>
+    <h3>Lista de Playlists</h3>
     <ul>
         {% for p in playlists %}
             <li><a href="{% url 'playlist_detail' p.pk %}">{{ p.nome }}</a> ({{ p.data_criacao }})</li>

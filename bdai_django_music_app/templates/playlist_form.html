@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Adicionar Playlist{% endblock %}
 {% block content %}
-    <h2>Adicionar Playlist</h2>
+    <h3>Adicionar Playlist</h3>
     <form method="post">
 	{% csrf_token %}
         {{ form.as_p }}

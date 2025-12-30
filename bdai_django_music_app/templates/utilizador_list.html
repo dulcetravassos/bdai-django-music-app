@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Utilizadores{% endblock %}
 {% block content %}
-    <h2>Lista de Utilizadores</h2>
+    <h3>Lista de Utilizadores</h3>
     <ul>
         {% for u in utilizadores %}
             <li><a href="{% url 'utilizador_detail' u.pk %}">{{ u.nome_utilizador }}</a>: {{ u.email }}</li>

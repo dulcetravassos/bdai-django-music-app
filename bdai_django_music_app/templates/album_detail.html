@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ album.nome }}{% endblock %}
 {% block content %}
-    <h2>{{ album.nome }}</h2>
+    <h3>{{ album.nome }}</h3>
     <p>Nome: {{ album.nome }}<br>Artista: {{ album.artista.nome }}<br>Ano de lançamento: {{ album.ano_lancamento }}<br>Género: {{ album.genero }}</p>
     <h3>Músicas deste Álbum:</h3>
     <ul>

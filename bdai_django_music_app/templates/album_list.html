@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Álbuns{% endblock %}
 {% block content %}
-    <h2>Lista de Álbuns</h2>
+    <h3>Lista de Álbuns</h3>
     <ul>
         {% for a in albuns %}
             <li><a href="{% url 'album_detail' a.pk %}">{{ a.nome }}</a> ({{ a.ano_lancamento }})</li>

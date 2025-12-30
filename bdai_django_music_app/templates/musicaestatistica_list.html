@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Músicas{% endblock %}
 {% block content %}
-    <h2>Lista de Músicas</h2>
+    <h3>Lista de Músicas</h3>
     <ul>
         {% for m in musicas %}
             <li><a href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> - ({{ m.url }})</li> <!-- ADICIONAR NOMES DOS ARTISTAS COM FOR-->

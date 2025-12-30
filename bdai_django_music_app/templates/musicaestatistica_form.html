@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}Adicionar Música{% endblock %}
 {% block content %}
-    <h2>Adicionar Música</h2>
+    <h3>Adicionar Música</h3>
     <form method="post">
 	{% csrf_token %}
         {{ form.as_p }}
