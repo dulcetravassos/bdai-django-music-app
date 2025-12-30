@@ -57,6 +57,11 @@ class MusicaEstatistica(models.Model):
     def __str__(self):
         return f"{self.nome} ({self.album.nome}) - {self.url}"
     
+    # Precisamos de uma função para alterar os urls para o django template (mas sem os modificar 
+    # na base de dados), para que as músicas consigam ser reproduzidas
+    def get_embed_url(self): 
+        return self.url.replace("intl-pt", "embed")
+    
 
 class Playlist(models.Model):
     nome = models.CharField(max_length=120)

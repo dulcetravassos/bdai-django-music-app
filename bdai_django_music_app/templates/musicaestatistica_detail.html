@@ -11,4 +11,5 @@
             <li>Não existem artistas.</li>
         {% endfor %}
     </ul>
+    <iframe data-testid="embed-iframe" style="border-radius:12px" src="{{musicaestatistica.get_embed_url}}" width="40%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 {% endblock %}
