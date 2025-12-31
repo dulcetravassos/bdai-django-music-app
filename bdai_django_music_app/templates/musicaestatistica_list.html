@@ -2,9 +2,18 @@
 {% block title %}Músicas{% endblock %}
 {% block content %}
     <h3>Lista de Músicas</h3>
-    <ul>
+    <ul class="list-group">
         {% for m in musicas %}
-            <li><a href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> - ({{ m.url }})</li> <!-- ADICIONAR NOMES DOS ARTISTAS COM FOR-->
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    {{ m.nome }} ({{ m.artistas.all|join:", " }}) <!-- pega nos nomes dos artistas e junta-os, separados por vírgulas -->
+                </span>
+                <span>
+                    <a href="{% url 'musicaestatistica_detail' m.pk %}">Ver Mais</a>
+                    <a href="{% url 'musicaestatistica_edit' m.pk %}">Editar</a>
+                    <a href="{% url 'musicaestatistica_delete' m.pk %}">Eliminar</a>
+                </span>
+            </li>
         {% empty %}
             <li>Não existem músicas.</li>
         {% endfor %}

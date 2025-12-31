@@ -9,7 +9,7 @@ class Artista(models.Model):
         verbose_name_plural = 'Artistas' # Override standard que é o inglês
 
     def __str__(self):
-        return f"{self.nome}\nBiografia: {self.biografia}\n"
+        return f"{self.nome}"
 
 
 class Utilizador(models.Model):
@@ -29,7 +29,7 @@ class Album(models.Model):
     nome = models.CharField(max_length=512)
     ano_lancamento = models.BigIntegerField()
     genero = models.CharField(max_length=512, null=True, blank=True) # opcional
-    artista = models.ForeignKey(Artista, on_delete=models.CASCADE, related_name='albuns')
+    artista = models.ForeignKey(Artista, on_delete=models.CASCADE, related_name='albuns') # se o artista for eliminado, os seus álbuns são eliminados
 
     class Meta:
         verbose_name = 'Álbum'
@@ -45,17 +45,18 @@ class MusicaEstatistica(models.Model):
     url = models.CharField(max_length=512, unique=True)
     estatistica_visualizacoes = models.BigIntegerField(default=0)
     estatistica_gostos = models.BigIntegerField(default=0)
-    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='musicas_estatisticas')
+    album = models.ForeignKey(Album, on_delete=models.CASCADE, related_name='musicas_estatisticas') # se o álbum for apagado, as suas músicas também são
 
     # Relação N:M com a tabela Artista
     artistas = models.ManyToManyField(Artista, related_name='musicas_estatisticas', db_table='artista_musica_estatistica') # Correspondência com a tabela na bd
+    # Nota: apagar o artista apaga os seus álbuns que, por sua vez, apaga as suas músicas!
 
     class Meta:
         verbose_name = 'Música'
         verbose_name_plural = 'Músicas' # Override standard que é o inglês
 
     def __str__(self):
-        return f"{self.nome} ({self.album.nome}) - {self.url}"
+        return f"{self.nome} ({self.album.nome})"
     
     # Precisamos de uma função para alterar os urls para o django template (mas sem os modificar 
     # na base de dados), para que as músicas consigam ser reproduzidas
@@ -67,10 +68,11 @@ class Playlist(models.Model):
     nome = models.CharField(max_length=120)
     publica = models.BooleanField()
     data_criacao = models.DateField(auto_now_add=True)
-    utilizador = models.ForeignKey(Utilizador, on_delete=models.CASCADE, related_name='playlists')
+    utilizador = models.ForeignKey(Utilizador, on_delete=models.CASCADE, related_name='playlists') # apagar um utilizador, apaga as suas playlists
 
     # Relação M:N com a tabela Musica:
     musicas = models.ManyToManyField(MusicaEstatistica, blank=True, related_name='playlists', db_table='playlist_musica_estatistica') # Correspondência com a tabela na bd
+    # Apagar uma música não apaga as playlists que a continham (desaparece apenas)!
 
     class Meta:
         verbose_name = 'Playlist'

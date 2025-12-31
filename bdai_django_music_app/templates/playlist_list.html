@@ -2,9 +2,18 @@
 {% block title %}Playlists{% endblock %}
 {% block content %}
     <h3>Lista de Playlists</h3>
-    <ul>
+    <ul class="list-group">
         {% for p in playlists %}
-            <li><a href="{% url 'playlist_detail' p.pk %}">{{ p.nome }}</a> ({{ p.data_criacao }})</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    {{ p.nome }} ({{ p.data_criacao }})
+                </span>
+                <span>
+                    <a href="{% url 'playlist_detail' p.pk %}">Ver Mais</a>
+                    <a href="{% url 'playlist_edit' p.pk %}">Editar</a>
+                    <a href="{% url 'playlist_delete' p.pk %}">Eliminar</a>
+                </span>
+            </li>
         {% empty %}
             <li>Não existem playlists!</li>
         {% endfor %}

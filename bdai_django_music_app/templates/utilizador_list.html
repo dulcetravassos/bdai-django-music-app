@@ -2,9 +2,18 @@
 {% block title %}Utilizadores{% endblock %}
 {% block content %}
     <h3>Lista de Utilizadores</h3>
-    <ul>
+    <ul class="list-group">
         {% for u in utilizadores %}
-            <li><a href="{% url 'utilizador_detail' u.pk %}">{{ u.nome_utilizador }}</a>: {{ u.email }}</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    {{ u.nome_utilizador }}: {{ u.email }}
+                </span>
+                <span>
+                    <a href="{% url 'utilizador_detail' u.pk %}">Ver Mais</a>
+                    <a href="{% url 'utilizador_edit' u.pk %}">Editar</a>
+                    <a href="{% url 'utilizador_delete' u.pk %}">Eliminar</a>
+                </span>
+            </li>
         {% empty %}
             <li>Não há utilizadores registados.</li>
         {% endfor %}

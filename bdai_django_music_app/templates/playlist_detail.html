@@ -6,8 +6,7 @@
     <h3>Músicas desta Playlist:</h3>
     <ul>
         {% for m in musicas %}
-            <li><a href="{% url 'musica_detail' m.pk %}">{{ m.nome }}</a> - {{ m.nome }} ({{ m.url }})</li> <!-- ADICIONAR NOME ARTISTA-->
-        {% empty %}
+            <li><a href="{% url 'musica_detail' m.pk %}">{{ m.nome }}</a> - {{ m.nome }} ({{ m.artistas.all|join:", " }})</li> <!-- pega nos nomes dos artistas e junta-os, separados por vírgulas -->
             <li>Esta playlist não tem músicas.</li>
         {% endfor %}
     </ul>

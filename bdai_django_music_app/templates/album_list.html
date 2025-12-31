@@ -2,9 +2,18 @@
 {% block title %}Álbuns{% endblock %}
 {% block content %}
     <h3>Lista de Álbuns</h3>
-    <ul>
+    <ul class="list-group">
         {% for a in albuns %}
-            <li><a href="{% url 'album_detail' a.pk %}">{{ a.nome }}</a> ({{ a.ano_lancamento }})</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span>
+                    {{ a.nome }} ({{ a.ano_lancamento }})
+                </span>
+                <span>
+                    <a href="{% url 'album_detail' a.pk %}">Ver Mais</a>
+                    <a href="{% url 'album_edit' a.pk %}">Editar</a>
+                    <a href="{% url 'album_delete' a.pk %}">Eliminar</a>
+                </span>
+            </li>
         {% empty %}
             <li>Não existem álbuns.</li>
         {% endfor %}

@@ -41,7 +41,7 @@ class UtilizadorUpdateView(UpdateView):
 # Eliminar Utilizador
 class UtilizadorDeleteView(DeleteView):
     model = Utilizador
-    template_name = "confirm_delete.html"
+    template_name = "utilizador_delete.html"
     success_url = reverse_lazy("utilizador_list")
 
 ################################################ Álbum ################################################
@@ -79,7 +79,7 @@ class AlbumUpdateView(UpdateView):
 # Eliminar Álbum
 class AlbumDeleteView(DeleteView):
     model = Album
-    template_name = "confirm_delete.html"
+    template_name = "album_delete.html"
     success_url = reverse_lazy("album_list")
 
 ################################################ Artista ################################################
@@ -118,7 +118,7 @@ class ArtistaUpdateView(UpdateView):
 # Eliminar Artista
 class ArtistaDeleteView(DeleteView):
     model = Artista
-    template_name = "confirm_delete.html"
+    template_name = "artista_delete.html"
     success_url = reverse_lazy("artista_list")
 
 ################################################ Playlist ################################################
@@ -156,7 +156,7 @@ class PlaylistUpdateView(UpdateView):
 # Eliminar Playlist
 class PlaylistDeleteView(DeleteView):
     model = Playlist
-    template_name = "confirm_delete.html"
+    template_name = "playlist_delete.html"
     success_url = reverse_lazy("playlist_list")
 
 ################################################ Música-Estatística ################################################
@@ -190,5 +190,5 @@ class MusicaEstatisticaUpdateView(UpdateView):
 # Eliminar Música e Estatísticas
 class MusicaEstatisticaDeleteView(DeleteView):
     model = MusicaEstatistica
-    template_name = "confirm_delete.html"
+    template_name = "musicaestatistica_delete.html"
     success_url = reverse_lazy("musicaestatistica_list")
