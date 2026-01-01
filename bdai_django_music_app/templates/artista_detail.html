@@ -1,22 +1,47 @@
 {% extends "base.html" %}
 {% block title %}{{ artista.nome }}{% endblock %}
 {% block content %}
-    <h3>{{ artista.nome }}</h3>
-    <p>Nome: {{ artista.nome }}<br>Biografia: {{ artista.biografia }}</p>
-    <h3>Músicas deste Artista:</h3>
+    <h2>{{ artista.nome }}</h2>
+    <div class="d-flex align-items-center">
+        {% if artista.foto %}
+            <img
+                src="{{ artista.foto.url }}"
+                alt="{{ artista.nome }}"
+                width="240"
+                height="240"
+                class="me-2 rounded"
+            />
+        {% else %}
+            <img
+                src="https://i.pinimg.com/736x/9e/83/75/9e837528f01cf3f42119c5aeeed1b336.jpg"
+                alt="Foto indisponível"
+                width="240"
+                height="240"
+                class="me-2 rounded"
+            />
+        {% endif %}
+    </div>
+    <br>
+    {% if artista.biografia %}
+        <p>Biografia: {{ artista.biografia }}</p>
+    {% else %}
+        <p>Biografia: Não disponível</p>
+    {% endif %}
+    <h4>Músicas deste Artista:</h4>
     <ul>
         {% for m in musicas %}
-            <li><a href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> ({{ m.url }})</li>
+            <li><a href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> ({{ m.get_duracao_formatada }})</li>
         {% empty %}
             <li>Este artista não tem músicas.</li>
         {% endfor %}
     </ul>
-    <h3>Álbuns deste Artista:</h3>
+    <h4>Álbuns deste Artista:</h4>
     <ul>
         {% for a in albuns %}
-            <li><a href="{% url 'album_detail' a.pk %}">{{ a.nome }}</a> ({{ m.ano_lancamento }})</li>
+            <li><a href="{% url 'album_detail' a.pk %}">{{ a.nome }}</a> ({{ a.ano_lancamento }})</li>
         {% empty %}
             <li>Este artista não tem álbuns.</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'artista_list' %}" class="btn btn-outline-secondary">Voltar</a>
 {% endblock %}

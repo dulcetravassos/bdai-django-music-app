@@ -4,12 +4,12 @@ from .models import MusicaEstatistica, Artista, Album, Playlist, Utilizador
 class AlbumForm(forms.ModelForm):
     class Meta:
         model = Album
-        fields = ['nome', 'ano_lancamento', 'genero', 'artista']
+        fields = ['nome', 'capa', 'ano_lancamento', 'genero', 'artista']
 
 class ArtistaForm(forms.ModelForm):
     class Meta:
         model = Artista
-        fields = ['nome', 'biografia']
+        fields = ['nome', 'foto', 'biografia']
 
 class UtilizadorForm(forms.ModelForm):
     class Meta:

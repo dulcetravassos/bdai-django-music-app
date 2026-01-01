@@ -3,6 +3,7 @@ from django.db import models
 class Artista(models.Model):
     nome = models.CharField(max_length=512)
     biografia = models.CharField(max_length=512, blank=True, null=True)
+    foto = models.ImageField(upload_to='artistas/', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Artista'
@@ -30,6 +31,7 @@ class Album(models.Model):
     ano_lancamento = models.BigIntegerField()
     genero = models.CharField(max_length=512, null=True, blank=True) # opcional
     artista = models.ForeignKey(Artista, on_delete=models.CASCADE, related_name='albuns') # se o artista for eliminado, os seus álbuns são eliminados
+    capa = models.ImageField(upload_to='albuns/', blank=True, null=True)
 
     class Meta:
         verbose_name = 'Álbum'
@@ -63,6 +65,14 @@ class MusicaEstatistica(models.Model):
     def get_embed_url(self): 
         return self.url.replace("intl-pt", "embed")
     
+    # Função para converter a duração de uma música de segundos para minutos (estilo xx:xx)
+    def get_duracao_formatada(self):
+        if self.duracao:
+            minutos = self.duracao // 60
+            segundos = self.duracao % 60
+            return f"{minutos}:{segundos:02d}" # :02d garante que o 5 vira 05
+        return "0:00"
+    
 
 class Playlist(models.Model):
     nome = models.CharField(max_length=120)
@@ -80,3 +90,8 @@ class Playlist(models.Model):
 
     def __str__(self):
         return f"{self.nome}"
+
+    def get_privacidade(self):
+        if self.publica:
+            return "Pública"
+        return "Privada"

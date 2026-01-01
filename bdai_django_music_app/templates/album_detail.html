@@ -1,9 +1,29 @@
 {% extends "base.html" %}
 {% block title %}{{ album.nome }}{% endblock %}
 {% block content %}
-    <h3>{{ album.nome }}</h3>
+    <h2>{{ album.nome }}</h2>
+    <div class="d-flex align-items-center">
+        {% if album.capa %}
+            <img
+                src="{{ album.capa.url }}"
+                alt="{{ album.nome }}"
+                width="240"
+                height="240"
+                class="me-2 rounded"
+            />
+        {% else %}
+            <img
+                src="https://upload.wikimedia.org/wikipedia/commons/3/3c/No-album-art.png"
+                alt="Capa indisponível"
+                width="240"
+                height="240"
+                class="me-2 rounded"
+            />
+        {% endif %}
+    </div>
+    <br>
     <p>Nome: {{ album.nome }}<br>Artista: {{ album.artista.nome }}<br>Ano de lançamento: {{ album.ano_lancamento }}<br>Género: {{ album.genero }}</p>
-    <h3>Músicas deste Álbum:</h3>
+    <h4>Músicas deste Álbum:</h4>
     <ul>
         {% for m in musicas %}
             <li><a href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> ({{ m.url }})</li>
@@ -11,4 +31,5 @@
             <li>Este álbum não tem músicas.</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'album_list' %}" class="btn btn-outline-secondary">Voltar</a>
 {% endblock %}

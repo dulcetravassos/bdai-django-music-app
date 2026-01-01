@@ -1,10 +1,149 @@
-{% extends "base.html" %}
-{% block title %}Home - Biblioteca de Música{% endblock %}
+{% extends "base.html" %} {% block title %}Home - Biblioteca de Música{%endblock%}
 {% block content %}
-    <h2>Bem-vindo à sua Biblioteca de Músicas!</h2>
-    <p>Ver <a href="{% url 'utilizador_list' %}">Utilizadores</a> disponíveis.</p>
-    <p>Ver <a href="{% url 'playlist_list' %}">Playlists</a> disponíveis.</p>
-    <p>Ver <a href="{% url 'artista_list' %}">Artistas</a> disponíveis.</p>
-    <p>Ver <a href="{% url 'album_list' %}">Álbuns</a> disponíveis.</p>
-    <p>Ver <a href="{% url 'musicaestatistica_list' %}">Músicas</a> disponíveis.</p>
+    <h2 class="text-center">Bem-vindo ao Sistema de Gestão de Bibliotecas de Músicas!</h2>
+    <br>
+
+    <div id="carouselOpcoes" class="carousel carousel-dark slide" data-bs-interval="false">
+        <div class="carousel-indicators">
+        <button
+            type="button"
+            data-bs-target="#carouselOpcoes"
+            data-bs-slide-to="0"
+            class="active"
+            aria-current="true"
+            aria-label="Slide 1"
+        ></button>
+        <button
+            type="button"
+            data-bs-target="#carouselOpcoes"
+            data-bs-slide-to="1"
+            aria-label="Slide 2"
+        ></button>
+        <button
+            type="button"
+            data-bs-target="#carouselOpcoes"
+            data-bs-slide-to="2"
+            aria-label="Slide 3"
+        ></button>
+        </div>
+        <div class="carousel-inner pb-5">
+            <div class="carousel-item active">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                <div class="col-lg-4">
+                    <img
+                    src="https://static.vecteezy.com/system/resources/previews/010/287/608/non_2x/two-users-icon-isolated-on-a-white-background-friends-line-icon-two-user-symbol-for-web-and-mobile-apps-free-vector.jpg"
+                    alt="Utilizadores"
+                    width="140"
+                    height="140"
+                    class="me-2 rounded-circle"
+                    />
+
+                    <h2 class="fw-normal">Utilizadores</h2>
+                    <p>Gerencia todos os utilizadores do sistema. Podes ver os seus detalhes e as suas playlists.</p>
+                    <p>
+                    <a class="btn btn-primary" href="{% url 'utilizador_list' %}">Ver Utilizadores »</a>
+                    </p>
+                </div>
+
+                <div class="col-lg-4">
+                    <img
+                    src="https://png.pngtree.com/png-vector/20221231/ourmid/pngtree-music-playlist-vector-icon-musical-note-and-list-vector-png-image_34961228.jpg"
+                    alt="Playlists"
+                    width="140"
+                    height="140"
+                    class="me-2 rounded-circle"
+                    />
+
+                    <h2 class="fw-normal">Playlists</h2>
+                    <p>Gerencia todas as playlists. Podes ver os seus detalhes e músicas.</p>
+                    <p>
+                    <a class="btn btn-primary" href="{% url 'playlist_list' %}">Ver Playlists »</a>
+                    </p>
+                </div>
+
+                </div>
+            </div>
+            </div>
+            <div class="carousel-item">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                <div class="col-lg-4">
+                    <img
+                    src="https://www.freeiconspng.com/uploads/artist-music-player-representation-icons--free-download-11.jpg"
+                    alt="Artistas"
+                    width="140"
+                    height="140"
+                    class="me-2 rounded-circle"
+                    />
+
+                    <h2 class="fw-normal">Artistas</h2>
+                    <p>Gerencia todos os artistas. Podes ver os seus detalhes, músicas e álbuns.</p>
+                    <p>
+                    <a class="btn btn-primary" href="{% url 'artista_list' %}">Ver Artistas »</a>
+                    </p>
+                </div>
+
+                <div class="col-lg-4">
+                    <img
+                    src="https://cdn-icons-png.flaticon.com/512/26/26805.png"
+                    alt="Álbuns"
+                    width="140"
+                    height="140"
+                    class="me-2 rounded-circle"
+                    />
+
+                    <h2 class="fw-normal">Álbuns</h2>
+                    <p>Gerencia todos os álbuns. Podes ver os seus detalhes e as suas músicas.</p>
+                    <p>
+                    <a class="btn btn-primary" href="{% url 'album_list' %}">Ver Álbuns »</a>
+                    </p>
+                </div>
+                </div>
+            </div>
+            </div>
+
+            <div class="carousel-item">
+            <div class="container">
+                <div class="row justify-content-center text-center">
+                <div class="col-lg-4">
+                    <img
+                    src="https://img.freepik.com/free-vector/three-music-notes-floating-upwards_78370-7371.jpg?semt=ais_hybrid&w=740&q=80"
+                    alt="Músicas"
+                    width="140"
+                    height="140"
+                    class="me-2 rounded-circle"
+                    />
+
+                    <h2 class="fw-normal">Músicas</h2>
+                    <p>Gerencia todas as músicas. Podes ver os seus detalhes e uma prévia da música.</p>
+                    <p>
+                    <a class="btn btn-primary" href="{% url 'musicaestatistica_list' %}">Ver Músicas »</a>
+                    </p>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselOpcoes"
+            data-bs-slide="prev"
+        >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselOpcoes"
+            data-bs-slide="next"
+        >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+        </button>
+        </div>
+    </div>
 {% endblock %}

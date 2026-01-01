@@ -9,9 +9,9 @@
                     {{ p.nome }} ({{ p.data_criacao }})
                 </span>
                 <span>
-                    <a href="{% url 'playlist_detail' p.pk %}">Ver Mais</a>
-                    <a href="{% url 'playlist_edit' p.pk %}">Editar</a>
-                    <a href="{% url 'playlist_delete' p.pk %}">Eliminar</a>
+                    <a href="{% url 'playlist_detail' p.pk %}" class="btn btn-outline-dark">Ver Mais</a>
+                    <a href="{% url 'playlist_edit' p.pk %}" class="btn btn-outline-dark">Editar</a>
+                    <a href="{% url 'playlist_delete' p.pk %}" class="btn btn-outline-dark">Eliminar</a>
                 </span>
             </li>
         {% empty %}

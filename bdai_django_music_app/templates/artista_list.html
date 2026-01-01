@@ -5,13 +5,32 @@
     <ul class="list-group">
         {% for a in artistas %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    {% if a.foto %}
+                        <img
+                            src="{{ a.foto.url }}"
+                            alt="{{ a.nome }}"
+                            width="60"
+                            height="60"
+                            class="me-2 rounded"
+                        />
+                    {% else %}
+                        <img
+                            src="https://i.pinimg.com/736x/9e/83/75/9e837528f01cf3f42119c5aeeed1b336.jpg"
+                            alt="Foto indisponível"
+                            width="60"
+                            height="60"
+                            class="me-2 rounded"
+                        />
+                    {% endif %}
+                    <span>
+                        {{ a.nome }} 
+                    </span>
+                </div>
                 <span>
-                    {{ a.nome }}
-                </span>
-                <span>
-                    <a href="{% url 'artista_detail' a.pk %}">Ver Mais</a>
-                    <a href="{% url 'artista_edit' a.pk %}">Editar</a>
-                    <a href="{% url 'artista_delete' a.pk %}">Eliminar</a>
+                    <a href="{% url 'artista_detail' a.pk %}" class="btn btn-outline-dark">Ver Mais</a>
+                    <a href="{% url 'artista_edit' a.pk %}" class="btn btn-outline-dark">Editar</a>
+                    <a href="{% url 'artista_delete' a.pk %}" class="btn btn-outline-dark">Eliminar</a>
                 </span>
             </li>
         {% empty %}

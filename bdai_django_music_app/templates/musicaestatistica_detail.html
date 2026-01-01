@@ -2,7 +2,7 @@
 {% block title %}{{ musicaestatistica.nome }}{% endblock %}
 {% block content %}
     <h3>{{ musicaestatistica.nome }}</h3>
-    <p>Nome: {{ musicaestatistica.nome }}<br>URL: {{ musicaestatistica.url }}<br>Gostos: {{ musicaestatistica.estatistica_gostos }}<br>Visualizações: {{ musicaestatistica.estatistica_visualizacoes }}</p> <!-- ADICIONAR ARTISTAS COM FOR -->
+    <p>Nome: {{ musicaestatistica.nome }}<br>Duração: {{ musicaestatistica.get_duracao_formatada }}<br>Gostos: {{ musicaestatistica.estatistica_gostos }}<br>Visualizações: {{ musicaestatistica.estatistica_visualizacoes }}</p> <!-- ADICIONAR ARTISTAS COM FOR -->
     <h3>Artistas desta Música:</h3>
     <ul>
         {% for a in musicaestatistica.artistas.all %}
@@ -12,4 +12,6 @@
         {% endfor %}
     </ul>
     <iframe data-testid="embed-iframe" style="border-radius:12px" src="{{musicaestatistica.get_embed_url}}" width="40%" height="200" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <br>
+    <a href="{% url 'musicaestatistica_list' %}" class="btn btn-outline-secondary">Voltar</a>
 {% endblock %}

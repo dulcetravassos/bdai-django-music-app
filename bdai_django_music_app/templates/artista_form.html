@@ -2,9 +2,10 @@
 {% block title %}Adicionar Artista{% endblock %}
 {% block content %}
     <h3>Adicionar Artista</h3>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
 	{% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <button type="submit" class="btn btn-outline-primary">Guardar</button>
+        <a href="{% url 'artista_list' %}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
 {% endblock %}

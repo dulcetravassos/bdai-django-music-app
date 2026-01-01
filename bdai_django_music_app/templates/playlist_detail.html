@@ -2,12 +2,14 @@
 {% block title %}{{ playlist.nome }}{% endblock %}
 {% block content %}
     <h3>{{ playlist.nome }}</h3>
-    <p>Nome: {{ playlist.nome }}<br>Data de Criação: {{ playlist.data_criacao }}<br>Pública? {{ playlist.publica }}</p>
+    <p>Nome: {{ playlist.nome }}<br>Data de Criação: {{ playlist.data_criacao }}<br>Visibilidade: {{ playlist.get_privacidade }}</p>
     <h3>Músicas desta Playlist:</h3>
     <ul>
         {% for m in musicas %}
             <li><a href="{% url 'musica_detail' m.pk %}">{{ m.nome }}</a> - {{ m.nome }} ({{ m.artistas.all|join:", " }})</li> <!-- pega nos nomes dos artistas e junta-os, separados por vírgulas -->
+        {% empty %}
             <li>Esta playlist não tem músicas.</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'playlist_list' %}" class="btn btn-outline-secondary">Voltar</a>
 {% endblock %}

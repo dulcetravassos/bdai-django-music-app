@@ -9,9 +9,9 @@
                     {{ m.nome }} ({{ m.artistas.all|join:", " }}) <!-- pega nos nomes dos artistas e junta-os, separados por vírgulas -->
                 </span>
                 <span>
-                    <a href="{% url 'musicaestatistica_detail' m.pk %}">Ver Mais</a>
-                    <a href="{% url 'musicaestatistica_edit' m.pk %}">Editar</a>
-                    <a href="{% url 'musicaestatistica_delete' m.pk %}">Eliminar</a>
+                    <a href="{% url 'musicaestatistica_detail' m.pk %}" class="btn btn-outline-dark">Ver Mais</a>
+                    <a href="{% url 'musicaestatistica_edit' m.pk %}" class="btn btn-outline-dark">Editar</a>
+                    <a href="{% url 'musicaestatistica_delete' m.pk %}" class="btn btn-outline-dark">Eliminar</a>
                 </span>
             </li>
         {% empty %}
