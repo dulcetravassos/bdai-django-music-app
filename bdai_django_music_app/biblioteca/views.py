@@ -1,7 +1,7 @@
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from .models import MusicaEstatistica, Artista, Album, Playlist, Utilizador
-from .forms import UtilizadorForm, PlaylistForm, ArtistaForm, AlbumForm, MusicaEstatisticaForm
+from .forms import UtilizadorForm, PlaylistForm, ArtistaForm, AlbumForm, MusicaEstatisticaForm, PlaylistModifyForm
 
 class HomeView(TemplateView):
     template_name = "home.html"
@@ -170,6 +170,14 @@ class PlaylistDeleteView(DeleteView):
     model = Playlist
     template_name = "playlist_delete.html"
     success_url = reverse_lazy("playlist_list")
+
+# Modificar Conteúdo Playlist
+class PlaylistModifyView(UpdateView):
+    model = Playlist
+    form_class = PlaylistModifyForm
+    template_name = "playlist_modify.html"
+    def get_success_url(self): # leva à playlist que acabou de ser atualizada, em vez da lista geral de todas as playlists
+        return reverse('playlist_detail', kwargs={'pk': self.object.pk})
 
 ################################################ Música-Estatística ################################################
 

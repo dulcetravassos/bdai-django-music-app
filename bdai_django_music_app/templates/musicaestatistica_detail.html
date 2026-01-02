@@ -6,7 +6,7 @@
     <h3>Artistas desta Música:</h3>
     <ul>
         {% for a in musicaestatistica.artistas.all %}
-            <li><a href="{% url 'artista_detail' a.pk %}">{{ a.nome }}</a></li>
+            <li><a class="link-fade" href="{% url 'artista_detail' a.pk %}">{{ a.nome }}</a></li>
         {% empty %}
             <li>Não existem artistas.</li>
         {% endfor %}

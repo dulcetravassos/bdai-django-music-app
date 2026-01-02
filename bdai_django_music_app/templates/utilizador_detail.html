@@ -26,7 +26,7 @@
     <h3>Playlists deste Utilizador:</h3>
     <ul>
         {% for p in playlists %}
-            <li><a href="{% url 'playlist_detail' p.pk %}">{{ p.nome }}</a> ({{ p.data_criacao }})</li>
+            <li><a class="link-fade" href="{% url 'playlist_detail' p.pk %}">{{ p.nome }}</a> ({{ p.data_criacao }})</li>
         {% empty %}
             <li>Este utilizador não tem playlists.</li>
         {% endfor %}

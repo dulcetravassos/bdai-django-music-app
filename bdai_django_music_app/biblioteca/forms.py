@@ -51,11 +51,18 @@ class PlaylistForm(forms.ModelForm):
                 field.widget.attrs['class'] = 'form-control'
                 field.widget.attrs['style'] = 'max-width: 400px;'
 
+class PlaylistModifyForm(forms.ModelForm):
+    class Meta:
+        model = Playlist
+        fields = ['musicas']
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['musicas'].widget.attrs['class'] = ' select-musicas' # para poder ser referenciado no playlist_modify.html
+
 class MusicaEstatisticaForm(forms.ModelForm):
     class Meta:
         model = MusicaEstatistica
         fields = ['nome', 'duracao', 'url', 'estatistica_gostos', 'estatistica_visualizacoes', 'album', 'artistas']
-
     #def __init__(self, *args, **kwargs):
     #    super().__init__(*args, **kwargs)
     #    for myField in self.fields:

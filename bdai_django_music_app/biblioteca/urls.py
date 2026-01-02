@@ -1,10 +1,13 @@
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
 from . import views
 
 urlpatterns = [
 	path('', views.HomeView.as_view(), name='home'),
+    
+	path('admin/', admin.site.urls),
     
 	path('utilizadores/', views.UtilizadorListView.as_view(), name='utilizador_list'),
 	path('utilizadores/add/', views.UtilizadorCreateView.as_view(), name='utilizador_create'),
@@ -17,6 +20,7 @@ urlpatterns = [
 	path('playlists/<int:pk>/', views.PlaylistDetailView.as_view(), name='playlist_detail'),
     path('playlists/<int:pk>/delete/', views.PlaylistDeleteView.as_view(), name='playlist_delete'),
 	path('playlists/<int:pk>/edit/', views.PlaylistUpdateView.as_view(), name='playlist_edit'),
+    path('playlists/<int:pk>/modify/', views.PlaylistModifyView.as_view(), name='playlist_modify'),
     
 	path('artistas/', views.ArtistaListView.as_view(), name='artista_list'),
 	path('artistas/add/', views.ArtistaCreateView.as_view(), name='artista_create'),

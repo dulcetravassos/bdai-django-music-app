@@ -10,7 +10,8 @@
                 </span>
                 <span>
                     <a href="{% url 'playlist_detail' p.pk %}" class="btn btn-outline-dark">Ver Mais</a>
-                    <a href="{% url 'playlist_edit' p.pk %}" class="btn btn-outline-dark">Editar</a>
+                    <a href="{% url 'playlist_edit' p.pk %}" class="btn btn-outline-dark">Editar Detalhes</a>
+                    <a href="{% url 'playlist_modify' p.pk %}" class="btn btn-outline-dark">Modificar</a>
                     <a href="{% url 'playlist_delete' p.pk %}" class="btn btn-outline-dark">Eliminar</a>
                 </span>
             </li>

@@ -7,3 +7,14 @@ body {
 header h1 a { text-decoration: none; color: #333; }
 h2 { font-family: "Arial Black", "Arial Bold", Gadget, sans-serif; text-decoration: none; color: #333;}
 nav a { margin-right: 8px; }
+
+a.link-fade {
+    color: #2e2e2e;
+    text-decoration: underline; 
+    transition: opacity 0.3s ease;
+}
+a.link-fade:hover {
+    color: #2e2e2e;
+    text-decoration: underline;
+    opacity: 0.6;
+}

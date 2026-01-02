@@ -30,7 +30,7 @@
     <h4>Músicas deste Artista:</h4>
     <ul>
         {% for m in musicas %}
-            <li><a href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> ({{ m.get_duracao_formatada }})</li>
+            <li><a class="link-fade" href="{% url 'musicaestatistica_detail' m.pk %}">{{ m.nome }}</a> ({{ m.get_duracao_formatada }})</li>
         {% empty %}
             <li>Este artista não tem músicas.</li>
         {% endfor %}
@@ -38,7 +38,7 @@
     <h4>Álbuns deste Artista:</h4>
     <ul>
         {% for a in albuns %}
-            <li><a href="{% url 'album_detail' a.pk %}">{{ a.nome }}</a> ({{ a.ano_lancamento }})</li>
+            <li><a class="link-fade" href="{% url 'album_detail' a.pk %}">{{ a.nome }}</a> ({{ a.ano_lancamento }})</li>
         {% empty %}
             <li>Este artista não tem álbuns.</li>
         {% endfor %}
