@@ -2,7 +2,7 @@
 {% block title %}{{ playlist.nome }}{% endblock %}
 {% block content %}
     <h2>{{ playlist.nome }}</h2>
-    <p>Nome: {{ playlist.nome }}<br>Data de Criação: {{ playlist.data_criacao }}<br>Visibilidade: {{ playlist.get_privacidade }}</p>
+    <p><b>Nome: </b>{{ playlist.nome }}<br><b>Data de Criação: </b>{{ playlist.data_criacao }}<br><b>Visibilidade: </b>{{ playlist.get_privacidade }}</p>
     <h3>Músicas desta Playlist:</h3>
     <ul>
         {% for m in musicas %}

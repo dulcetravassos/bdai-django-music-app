@@ -2,7 +2,7 @@
 {% block title %}{{ musicaestatistica.nome }}{% endblock %}
 {% block content %}
     <h2>{{ musicaestatistica.nome }}</h2>
-    <p>Nome: {{ musicaestatistica.nome }}<br>Duração: {{ musicaestatistica.get_duracao_formatada }}<br>Gostos: {{ musicaestatistica.estatistica_gostos }}<br>Visualizações: {{ musicaestatistica.estatistica_visualizacoes }}</p> <!-- ADICIONAR ARTISTAS COM FOR -->
+    <p><b>Nome: </b>{{ musicaestatistica.nome }}<br><b>Duração: </b>{{ musicaestatistica.get_duracao_formatada }}<br><b>Gostos: </b>{{ musicaestatistica.estatistica_gostos }}<br><b>Visualizações: </b>{{ musicaestatistica.estatistica_visualizacoes }}</p> <!-- ADICIONAR ARTISTAS COM FOR -->
     <h3>Artistas desta Música:</h3>
     <ul>
         {% for a in musicaestatistica.artistas.all %}
