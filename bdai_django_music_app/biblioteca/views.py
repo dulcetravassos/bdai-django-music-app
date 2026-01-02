@@ -2,6 +2,7 @@ from django.views.generic import TemplateView, ListView, DetailView, CreateView,
 from django.urls import reverse, reverse_lazy
 from .models import MusicaEstatistica, Artista, Album, Playlist, Utilizador
 from .forms import UtilizadorForm, PlaylistForm, ArtistaForm, AlbumForm, MusicaEstatisticaForm, PlaylistModifyForm
+from django.db.models import Q
 
 class HomeView(TemplateView):
     template_name = "home.html"
@@ -22,6 +23,15 @@ class UtilizadorListView(ListView):
     template_name = "utilizador_list.html"
     context_object_name = "utilizadores"
     ordering = ['nome_utilizador']
+    def get_queryset(self): # Para permitir a pesquisa dinâmica
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(
+                Q(nome_utilizador__icontains=search_query) | # pesquisa pelo nome de utilizador
+                Q(email__icontains=search_query) # pesquisa pelo email
+            )
+        return queryset
 
 # Utilizador: detalhes + playlists
 class UtilizadorDetailView(DetailView):
@@ -61,6 +71,15 @@ class AlbumListView(ListView):
     template_name = "album_list.html"
     context_object_name = "albuns"
     ordering = ['nome']
+    def get_queryset(self): # Para permitir a pesquisa dinâmica
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(
+                Q(nome__icontains=search_query) | # pesquisa pelo nome
+                Q(artista__nome__icontains=search_query) # pesquisa pelo artista
+            )
+        return queryset
 
 # Álbum: detalhes (inclui artista) + músicas
 class AlbumDetailView(DetailView):
@@ -100,6 +119,12 @@ class ArtistaListView(ListView):
     template_name = "artista_list.html"
     context_object_name = "artistas"
     ordering = ['nome']
+    def get_queryset(self): # Para permitir a pesquisa dinâmica
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(nome__icontains=search_query)
+        return queryset
 
 # Artista: detalhes + músicas + álbuns
 class ArtistaDetailView(DetailView):
@@ -140,6 +165,12 @@ class PlaylistListView(ListView):
     template_name = "playlist_list.html"
     context_object_name = "playlists"
     ordering = ['nome']
+    def get_queryset(self): # Para permitir a pesquisa dinâmica
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(nome__icontains=search_query)
+        return queryset
 
 # Playlist: detalhes
 class PlaylistDetailView(DetailView):
@@ -187,6 +218,15 @@ class MusicaEstatisticaListView(ListView):
     template_name = "musicaestatistica_list.html"
     context_object_name = "musicas"
     ordering = ['nome']
+    def get_queryset(self): # Para permitir a pesquisa dinâmica
+        queryset = super().get_queryset()
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(
+                Q(nome__icontains=search_query) | # pesquisa pelo nome
+                Q(artistas__nome__icontains=search_query) # pesquisa pelo artista
+            )
+        return queryset
 
 # Música-Estatística: detalhes
 class MusicaEstatisticaDetailView(DetailView):

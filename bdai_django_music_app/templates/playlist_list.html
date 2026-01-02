@@ -2,7 +2,18 @@
 {% block title %}Playlists{% endblock %}
 {% block content %}
     <h3>Lista de Playlists</h3>
-    <ul class="list-group">
+    <div class="mb-4">
+        <input type="text" 
+               name="q" 
+               class="form-control" 
+               placeholder="Comece a escrever para pesquisar..."
+               hx-get="{% url 'playlist_list' %}" 
+               hx-trigger="keyup changed delay:10ms, search" 
+               hx-target="#lista-playlists" 
+               hx-select="#lista-playlists"
+               hx-swap="outerHTML">
+    </div>
+    <ul class="list-group" id="lista-playlists">
         {% for p in playlists %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span>
@@ -16,7 +27,7 @@
                 </span>
             </li>
         {% empty %}
-            <li>Não existem playlists!</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Não foram encontradas playlists.</li>
         {% endfor %}
     </ul>
 {% endblock %}

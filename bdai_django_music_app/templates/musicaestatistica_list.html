@@ -2,11 +2,22 @@
 {% block title %}Músicas{% endblock %}
 {% block content %}
     <h3>Lista de Músicas</h3>
-    <ul class="list-group">
+    <div class="mb-4">
+        <input type="text" 
+               name="q" 
+               class="form-control" 
+               placeholder="Comece a escrever para pesquisar..."
+               hx-get="{% url 'musicaestatistica_list' %}" 
+               hx-trigger="keyup changed delay:10ms, search" 
+               hx-target="#lista-musicas" 
+               hx-select="#lista-musicas"
+               hx-swap="outerHTML">
+    </div>
+    <ul class="list-group" id="lista-musicas"> 
         {% for m in musicas %}
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span>
-                    {{ m.nome }} ({{ m.artistas.all|join:", " }}) <!-- pega nos nomes dos artistas e junta-os, separados por vírgulas -->
+                    {{ m.nome }} ({{ m.artistas.all|join:", " }})
                 </span>
                 <span>
                     <a href="{% url 'musicaestatistica_detail' m.pk %}" class="btn btn-outline-dark">Ver Mais</a>
@@ -15,7 +26,7 @@
                 </span>
             </li>
         {% empty %}
-            <li>Não existem músicas.</li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">Não foram encontradas músicas.</li>
         {% endfor %}
     </ul>
 {% endblock %}
