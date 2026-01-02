@@ -132,5 +132,35 @@
       <p>Projeto BDAI 25/26 - Dulce Travassos</p>
     </footer>
     {% bootstrap_javascript %}
+
+    <!-- Janela pop-up (Toast) - https://getbootstrap.com/docs/5.0/components/toasts/ -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+      {% if messages %} <!-- deteta se há alguma mensagem a ser recebida (ver views.py) -->
+          {% for message in messages %}
+              <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="toast-header">
+                      <div class="rounded me-2" style="width: 20px; height: 20px; background-color: {% if message.tags == 'success' %}#198754{% else %}#dc3545{% endif %};"></div>
+                      <strong class="me-auto">Sucesso</strong>
+                      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body">
+                      {{ message }}
+                  </div>
+              </div>
+          {% endfor %}
+      {% endif %}
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var toastElList = [].slice.call(document.querySelectorAll('.toast')); // Seleciona todos os elementos com a classe .toast
+            var toastList = toastElList.map(function(toastEl) {
+                var toast = new bootstrap.Toast(toastEl, { delay: 3000 }); // Desaparece após 3 segundos
+                toast.show();
+                return toast;
+            });
+        });
+    </script>
+
   </body>
 </html>

@@ -3,7 +3,7 @@
     <h3>Eliminar <i>{{ object }}</i>?</h3>
     <p>Tens a certeza que queres eliminar este álbum? Todas as suas músicas vão ser apagadas!</p>
     <form method="post">{% csrf_token %}
-        <button type="submit">Sim, eliminar</button>
-        <a href="{% url 'album_list' %}">Cancelar</a>
+        <button class="btn btn-primary" type="submit">Sim, eliminar</button>
+        <a class="btn btn-secondary" href="{% url 'album_list' %}">Cancelar</a>
     </form>
 {% endblock %}
