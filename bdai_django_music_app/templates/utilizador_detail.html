@@ -1,8 +1,28 @@
 {% extends "base.html" %}
 {% block title %}{{ utilizador.nome_utilizador }}{% endblock %}
 {% block content %}
-    <h3>{{ utilizador.nome }}</h3>
-    <p>Nome: {{ utilizador.nome_utilizador }}<br>Email: {{ utilizador.email }}</p>
+    <h2>{{ utilizador.nome_utilizador }}</h2>
+    <p>Email: {{ utilizador.email }}</p>
+        <div class="d-flex align-items-center mb-3">
+            <span class="me-2">Password:</span>
+            <div class="input-group input-group-sm" style="width: 250px;">
+                <input 
+                    type="password" 
+                    class="form-control" 
+                    value="{{ utilizador.password }}" 
+                    id="passwordInput" 
+                    readonly
+                >
+                <button 
+                    class="btn btn-outline-secondary" 
+                    type="button" 
+                    id="toggleBtn"
+                    onclick="mostrarPassword()"
+                >
+                    <i class="bi bi-eye" id="iconEye"></i>
+                </button>
+            </div>
+        </div>
     <h3>Playlists deste Utilizador:</h3>
     <ul>
         {% for p in playlists %}
@@ -12,4 +32,26 @@
         {% endfor %}
     </ul>
     <a href="{% url 'utilizador_list' %}" class="btn btn-outline-secondary">Voltar</a>
+
+   <!-- Função para mostrar ou ocultar a password ao clicar no botão -->
+   <!-- Altera o tipo do input entre password e text (para ficar visível e invisível) e altera os ícones (olho aberto/olho fechado)-->
+    <script>
+        function mostrarPassword() {
+            var inputPass = document.getElementById("passwordInput");
+            var icon = document.getElementById("iconEye");
+
+            if (inputPass && icon) {
+                if (inputPass.type === "password") {
+                    inputPass.type = "text";
+                    icon.classList.remove("bi-eye");
+                    icon.classList.add("bi-eye-slash");
+                } else {
+                    inputPass.type = "password";
+                    icon.classList.remove("bi-eye-slash");
+                    icon.classList.add("bi-eye");
+                }
+            }
+        }
+    </script>
+
 {% endblock %}

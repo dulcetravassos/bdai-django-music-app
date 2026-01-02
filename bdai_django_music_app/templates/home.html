@@ -40,7 +40,7 @@
                     />
 
                     <h2 class="fw-normal">Utilizadores</h2>
-                    <p>Gerencia todos os utilizadores do sistema. Podes ver os seus detalhes e as suas playlists.</p>
+                    <p>Gerencia todos os utilizadores do sistema. Pode ver os seus detalhes e as suas playlists. <b>Há {{ num_utilizadores }} utilizadores registados.</b></p>
                     <p>
                     <a class="btn btn-primary" href="{% url 'utilizador_list' %}">Ver Utilizadores »</a>
                     </p>
@@ -56,7 +56,7 @@
                     />
 
                     <h2 class="fw-normal">Playlists</h2>
-                    <p>Gerencia todas as playlists. Podes ver os seus detalhes e músicas.</p>
+                    <p>Gerencia todas as playlists. Pode ver os seus detalhes e músicas. <b>Há {{ num_playlists }} playlists registadas.</b></p>
                     <p>
                     <a class="btn btn-primary" href="{% url 'playlist_list' %}">Ver Playlists »</a>
                     </p>
@@ -78,7 +78,7 @@
                     />
 
                     <h2 class="fw-normal">Artistas</h2>
-                    <p>Gerencia todos os artistas. Podes ver os seus detalhes, músicas e álbuns.</p>
+                    <p>Gerencia todos os artistas. Pode ver os seus detalhes, músicas e álbuns. <b>Há {{ num_artistas }} artistas registados.</b></p>
                     <p>
                     <a class="btn btn-primary" href="{% url 'artista_list' %}">Ver Artistas »</a>
                     </p>
@@ -94,7 +94,7 @@
                     />
 
                     <h2 class="fw-normal">Álbuns</h2>
-                    <p>Gerencia todos os álbuns. Podes ver os seus detalhes e as suas músicas.</p>
+                    <p>Gerencia todos os álbuns. Pode ver os seus detalhes e as suas músicas. <b>Há {{ num_albuns }} álbuns registados.</b></p>
                     <p>
                     <a class="btn btn-primary" href="{% url 'album_list' %}">Ver Álbuns »</a>
                     </p>
@@ -116,7 +116,7 @@
                     />
 
                     <h2 class="fw-normal">Músicas</h2>
-                    <p>Gerencia todas as músicas. Podes ver os seus detalhes e uma prévia da música.</p>
+                    <p>Gerencia todas as músicas. Pode ver os seus detalhes e uma prévia da música. <b>Há {{ num_musicas }} músicas registadas.</b></p>
                     <p>
                     <a class="btn btn-primary" href="{% url 'musicaestatistica_list' %}">Ver Músicas »</a>
                     </p>
@@ -146,4 +146,19 @@
         </button>
         </div>
     </div>
+
+    <div class="row justify-content-center mt-4">
+    <div class="col-md-6">
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-dark text-center">Número de Registos no Sistema</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><b>Utilizadores: </b><span class="badge bg-secondary rounded-pill">{{ num_utilizadores }}</span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><b>Playlists: </b><span class="badge bg-secondary rounded-pill">{{ num_playlists }}</span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><b>Artistas: </b><span class="badge bg-secondary rounded-pill">{{ num_artistas }}</span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><b>Álbuns: </b><span class="badge bg-secondary rounded-pill">{{ num_albuns }}</span></li>
+        <li class="list-group-item d-flex justify-content-between align-items-center"><b>Músicas: </b><span class="badge bg-secondary rounded-pill">{{ num_musicas }}</span></li>
+    </ul>
+    </div>
+
+    </div>
+
 {% endblock %}

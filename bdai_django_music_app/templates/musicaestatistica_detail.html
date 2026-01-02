@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ musicaestatistica.nome }}{% endblock %}
 {% block content %}
-    <h3>{{ musicaestatistica.nome }}</h3>
+    <h2>{{ musicaestatistica.nome }}</h2>
     <p>Nome: {{ musicaestatistica.nome }}<br>Duração: {{ musicaestatistica.get_duracao_formatada }}<br>Gostos: {{ musicaestatistica.estatistica_gostos }}<br>Visualizações: {{ musicaestatistica.estatistica_visualizacoes }}</p> <!-- ADICIONAR ARTISTAS COM FOR -->
     <h3>Artistas desta Música:</h3>
     <ul>

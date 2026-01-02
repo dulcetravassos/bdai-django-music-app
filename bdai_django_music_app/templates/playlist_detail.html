@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ playlist.nome }}{% endblock %}
 {% block content %}
-    <h3>{{ playlist.nome }}</h3>
+    <h2>{{ playlist.nome }}</h2>
     <p>Nome: {{ playlist.nome }}<br>Data de Criação: {{ playlist.data_criacao }}<br>Visibilidade: {{ playlist.get_privacidade }}</p>
     <h3>Músicas desta Playlist:</h3>
     <ul>

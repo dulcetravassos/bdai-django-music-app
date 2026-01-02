@@ -5,6 +5,14 @@ from .forms import UtilizadorForm, PlaylistForm, ArtistaForm, AlbumForm, MusicaE
 
 class HomeView(TemplateView):
     template_name = "home.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['num_utilizadores'] = Utilizador.objects.count()
+        context['num_playlists'] = Playlist.objects.count()
+        context['num_artistas'] = Artista.objects.count()
+        context['num_albuns'] = Album.objects.count()
+        context['num_musicas'] = MusicaEstatistica.objects.count()
+        return context
 
 ################################################ Utilizador ################################################
 
@@ -13,6 +21,7 @@ class UtilizadorListView(ListView):
     model = Utilizador
     template_name = "utilizador_list.html"
     context_object_name = "utilizadores"
+    ordering = ['nome_utilizador']
 
 # Utilizador: detalhes + playlists
 class UtilizadorDetailView(DetailView):
@@ -51,6 +60,7 @@ class AlbumListView(ListView):
     model = Album
     template_name = "album_list.html"
     context_object_name = "albuns"
+    ordering = ['nome']
 
 # Álbum: detalhes (inclui artista) + músicas
 class AlbumDetailView(DetailView):
@@ -89,6 +99,7 @@ class ArtistaListView(ListView):
     model = Artista
     template_name = "artista_list.html"
     context_object_name = "artistas"
+    ordering = ['nome']
 
 # Artista: detalhes + músicas + álbuns
 class ArtistaDetailView(DetailView):
@@ -128,6 +139,7 @@ class PlaylistListView(ListView):
     model = Playlist
     template_name = "playlist_list.html"
     context_object_name = "playlists"
+    ordering = ['nome']
 
 # Playlist: detalhes
 class PlaylistDetailView(DetailView):
@@ -166,6 +178,7 @@ class MusicaEstatisticaListView(ListView):
     model = MusicaEstatistica
     template_name = "musicaestatistica_list.html"
     context_object_name = "musicas"
+    ordering = ['nome']
 
 # Música-Estatística: detalhes
 class MusicaEstatisticaDetailView(DetailView):

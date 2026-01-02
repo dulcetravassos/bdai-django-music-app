@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 {% block title %}Adicionar Música{% endblock %}
 {% block content %}
+    <!-- Importar jQuery, para correr o Select2 - https://jquery.com/download/ -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- Importar Select2 (para permitir pesquisa de artistas pelo nome) - https://select2.org/getting-started/installation -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <!-- Tema Bootstrap para o Select2, para melhorar o aspeto -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
     <h3>Adicionar Música</h3>
     <form method="post">
 	{% csrf_token %}
@@ -8,4 +16,16 @@
         <button type="submit" class="btn btn-outline-primary">Guardar</button>
         <a href="{% url 'musicaestatistica_list' %}" class="btn btn-outline-secondary">Cancelar</a>
     </form>
+
+    <!-- jQuery para utilizar o Select2 (Select2 foi escrito já a pensar no jQuery) - https://learn.jquery.com/using-jquery-core/document-ready/ -->
+    <script> 
+    $(document).ready(function() { // o código só corre quando a página toda tiver carregado
+        $('.select-artistas').select2({ // definida no forms.py, sabe o que colocar no select2
+            theme: 'bootstrap-5',
+            placeholder: "Pesquise e selecione os artistas...",
+            width: '100%',
+            allowClear: true
+        });
+    });
+</script>
 {% endblock %}
