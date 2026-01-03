@@ -54,7 +54,7 @@ class UtilizadorCreateView(CreateView):
     template_name = "utilizador_form.html"
     success_url = reverse_lazy("utilizador_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Utilizador criado com sucesso!")
         return response
@@ -66,7 +66,7 @@ class UtilizadorUpdateView(UpdateView):
     template_name = "utilizador_form.html"
     success_url = reverse_lazy("utilizador_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Utilizador editado com sucesso!")
         return response
@@ -77,7 +77,7 @@ class UtilizadorDeleteView(DeleteView):
     template_name = "utilizador_delete.html"
     success_url = reverse_lazy("utilizador_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Utilizador eliminado com sucesso.")
         return response
@@ -119,7 +119,7 @@ class AlbumCreateView(CreateView):
     template_name = "album_form.html"
     success_url = reverse_lazy("album_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Álbum adicionado com sucesso!")
         return response
@@ -131,7 +131,7 @@ class AlbumUpdateView(UpdateView):
     template_name = "album_form.html"
     success_url = reverse_lazy("album_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Álbum atualizado com sucesso!")
         return response
@@ -142,7 +142,7 @@ class AlbumDeleteView(DeleteView):
     template_name = "album_delete.html"
     success_url = reverse_lazy("album_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Álbum eliminado com sucesso.")
         return response
@@ -182,7 +182,7 @@ class ArtistaCreateView(CreateView):
     template_name = "artista_form.html"
     success_url = reverse_lazy("artista_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Artista adicionado com sucesso!")
         return response
@@ -194,7 +194,7 @@ class ArtistaUpdateView(UpdateView):
     template_name = "artista_form.html"
     success_url = reverse_lazy("artista_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Artista atualizado com sucesso!")
         return response
@@ -205,7 +205,7 @@ class ArtistaDeleteView(DeleteView):
     template_name = "artista_delete.html"
     success_url = reverse_lazy("artista_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Artista eliminado com sucesso.")
         return response
@@ -244,7 +244,7 @@ class PlaylistCreateView(CreateView):
     template_name = "playlist_form.html"
     success_url = reverse_lazy("playlist_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Playlist criada com sucesso!")
         return response
@@ -256,7 +256,7 @@ class PlaylistUpdateView(UpdateView):
     template_name = "playlist_form.html"
     success_url = reverse_lazy("playlist_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Detalhes da playlist atualizados com sucesso!")
         return response
@@ -267,7 +267,7 @@ class PlaylistDeleteView(DeleteView):
     template_name = "playlist_delete.html"
     success_url = reverse_lazy("playlist_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Playlist eliminada com sucesso.")
         return response
@@ -281,7 +281,7 @@ class PlaylistModifyView(UpdateView):
     def get_success_url(self): # leva à playlist que acabou de ser atualizada, em vez da lista geral de todas as playlists
         return reverse('playlist_detail', kwargs={'pk': self.object.pk})
     
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Playlist atualizada com sucesso!")
         return response
@@ -318,7 +318,7 @@ class MusicaEstatisticaCreateView(CreateView):
     template_name = "musicaestatistica_form.html"
     success_url = reverse_lazy("musicaestatistica_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Música adicionada com sucesso!")
         return response
@@ -330,7 +330,7 @@ class MusicaEstatisticaUpdateView(UpdateView):
     template_name = "musicaestatistica_form.html"
     success_url = reverse_lazy("musicaestatistica_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Música atualizada com sucesso!")
         return response
@@ -341,7 +341,7 @@ class MusicaEstatisticaDeleteView(DeleteView):
     template_name = "musicaestatistica_delete.html"
     success_url = reverse_lazy("musicaestatistica_list")
 
-    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso
+    def form_valid(self, form): # necessário para mostrar o pop-up de sucesso; corre automaticamente
         response = super().form_valid(form) # Guarda os dados primeiro
         messages.success(self.request, "Música eliminada com sucesso.")
         return response

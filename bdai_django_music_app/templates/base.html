@@ -151,6 +151,7 @@
       {% endif %}
     </div>
 
+    <!-- Script para o Toast poder ser utilizado em vários templates (ver views.py) -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var toastElList = [].slice.call(document.querySelectorAll('.toast')); // Seleciona todos os elementos com a classe .toast
