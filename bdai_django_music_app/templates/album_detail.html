@@ -22,7 +22,10 @@
         {% endif %}
     </div>
     <br>
-    <p><b>Nome: </b>{{ album.nome }}<br><b>Artista: </b>{{ album.artista.nome }}<br><b>Ano de lançamento: </b>{{ album.ano_lancamento }}<br><b>Género: </b>{{ album.genero }}</p>
+    <p><b>Nome: </b>{{ album.nome }}<br>
+        <b>Artista: </b><a class="link-fade" href="{% url 'artista_detail' album.artista.pk %}">{{ album.artista.nome }}</a><br>
+        <b>Ano de lançamento: </b>{{ album.ano_lancamento }}<br>
+        <b>Género: </b>{{ album.genero }}</p>
     <h4>Músicas deste Álbum:</h4>
     <ul>
         {% for m in musicas %}
